@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <RollingFile name="Logs" fileName="logs/latest.log"
+                     filePattern="logs/$${date:yyyy-MM}/%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout pattern="[%d{HH:mm:ss}] [%level] - %msg%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingFile>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi="false"
+                           pattern="%highlight{[%d{HH:mm:ss}] [%level] - %msg%n%throwable}{FATAL=bright red, ERROR=red, WARN=yellow, INFO=bright cyan, DEBUG=cyan, TRACE=bright black}"
+                           charset="UTF-8"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="all">
+            <AppenderRef ref="Console" level="${sys:logging.level:-info}"/>
+            <AppenderRef ref="Logs" level="${sys:logging.level:-info}"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,21 @@
+spring:
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mariadb://localhost:3306/????useUnicode=yes&characterEncoding=utf-8&allowMultiQueries=true&autoReconnect=true&jdbcCompliantTruncation=false
+    username: ???
+    password: ???
+    hikari:
+      data-source-properties:
+        useUnicode: true
+        characterEncoding: UTF-8
+    tomcat:
+      connection-properties: useUnicode=true;characterEncoding=utf-8;
+    driver-class-name: org.mariadb.jdbc.Driver
+
+server:
+  port: 1679
